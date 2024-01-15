@@ -1,7 +1,5 @@
-import { gql } from "graphql-request";
 import sortNewsByImage from "./sortNewsByImage";
 import axios from "axios";
-import { url } from "inspector";
 import { categories } from "@/constants";
 const fetchNews = async (
   category?: Category | string,
