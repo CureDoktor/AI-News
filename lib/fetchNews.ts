@@ -385,9 +385,10 @@ const fetchNews = () => {
 
   const nesto = "something here should be translated to Serbian language";
 
-  const prevedeno = TranslatedText(nesto);
+  //const prevedeno = TranslatedText(nesto);
 
-  console.log(prevedeno);
+  
+  //console.log(prevedeno);
 
   return test;
 };
