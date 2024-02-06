@@ -19,7 +19,7 @@ import { categories } from "@/constants";
 //   return cure;
 // };
 
-const fetchNews = () => {
+const fetchNews = (category: Category) => {
   const test = {
     pagination: { limit: 25, offset: 0, count: 25, total: 10000 },
     data: [
