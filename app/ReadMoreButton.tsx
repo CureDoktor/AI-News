@@ -12,7 +12,13 @@ function ReadMoreButton({ article }: Props) {
 
   const handleClick = () => {
     const queryString = Object.entries(article)
-      .map(([key, value]) => `${key}=${value}`)
+      .map(([key, value]) => {
+        // Check if the value is null, if so, return an empty string
+        if (value === null) return "";
+        // Otherwise, encode the key and value
+        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+      })
+      .filter(Boolean) // Remove empty strings
       .join("&");
 
     const url = `/article?${queryString}`;
