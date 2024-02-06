@@ -19,7 +19,11 @@ import { categories } from "@/constants";
 //   return cure;
 // };
 
-const fetchNews = (category: Category) => {
+const fetchNews = (
+  category?: Category | string,
+  keywords?: string,
+  isDynamic?: boolean
+) => {
   const test = {
     pagination: { limit: 25, offset: 0, count: 25, total: 10000 },
     data: [
@@ -387,7 +391,6 @@ const fetchNews = (category: Category) => {
 
   //const prevedeno = TranslatedText(nesto);
 
-  
   //console.log(prevedeno);
 
   return test;
