@@ -1,9 +1,8 @@
 import OpenAI from "openai";
 
 export const TranslatedText = async (message: string) => {
-  console.log("ovde smo");
   const openai = new OpenAI({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const response = await openai.chat.completions.create({
