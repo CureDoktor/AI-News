@@ -3,6 +3,7 @@ import axios from "axios";
 import { TranslatedText } from "./generate-answer";
 import { categories } from "@/constants";
 import { translateText } from "./translateNews";
+
 const fetchNews = async (
   category?: Category | string,
   keywords?: string,
@@ -10,17 +11,26 @@ const fetchNews = async (
 ) => {
   //countries=rs za srpske vesti
 
-  const nesto = "something here should be translated to Serbian language";
-  console.log(nesto + " treba da se prevede");
-
-  const prevedeno = translateText(nesto, "sr");
-
   const res = await axios({
     method: "get",
     url: `http://api.mediastack.com/v1/news?access_key=a265c48fab503c6cbb4d7aeecd460109&languages=en${
       category ? "&categories=" + category : ""
     }${keywords ? "&keywords=" + keywords : ""}`,
   });
+
+  res.data.data.forEach((item: any) => {
+    // Translate the title and description fields
+    const translatedTitle: any = translateText(item.title, "sr");
+    const translatedDescription: any = translateText(item.description, "sr");
+
+    // Update the item with translated fields
+    item.title = translatedTitle;
+    item.description = translatedDescription;
+  });
+
+  //const prevedeno = translateText(res?.data, "sr");
+
+  // console.log(prevedeno);
 
   const cure = sortNewsByImage(res?.data);
 
@@ -395,13 +405,11 @@ const fetchNews = async (
 //     ],
 //   };
 
-//   const nesto = "something here should be translated to Serbian language";
+//   //const nesto = "something here should be translated to Serbian language";
 
-//   const prevedeno = translateText(nesto, 'sr');
+//   // const prevedeno = translateText(nesto, "sr");
 
-//   console.log(prevedeno);
-
-//   return test;}
+//   return test;
 // };
 
 export default fetchNews;

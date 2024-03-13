@@ -17,7 +17,9 @@ function Header() {
           </h1>
         </Link>
       </div>
-
+      {/* Nav Links */}
+      <NavLinks />
+      {/* Search Bar */}
       <SearchBox />
     </header>
   );
