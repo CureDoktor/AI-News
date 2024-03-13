@@ -1,13 +1,13 @@
 import OpenAI from "openai";
 
-export const TranslatedText = async (message: string) => {
+export const TranslatedText = async (message: any) => {
   console.log("ovde smo");
   const openai = new OpenAI({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const response = await openai.chat.completions.create({
-    model: "davinci-002",
+    model: "gpt-3.5-turbo",
     messages: [
       {
         "role": "system",
@@ -23,6 +23,7 @@ export const TranslatedText = async (message: string) => {
     max_tokens: 64,
     top_p: 1,
   });
+  console.log(response.choices[0].message.content);
 
-  return response;
+  return response.choices[0].message.content;
 };

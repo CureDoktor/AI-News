@@ -2,6 +2,7 @@ import sortNewsByImage from "./sortNewsByImage";
 import axios from "axios";
 import { TranslatedText } from "./generate-answer";
 import { categories } from "@/constants";
+import { text } from "stream/consumers";
 // const fetchNews = async (
 //   category?: Category | string,
 //   keywords?: string,
@@ -389,9 +390,15 @@ const fetchNews = (
 
   const nesto = "something here should be translated to Serbian language";
 
-  //const prevedeno = TranslatedText(nesto);
+  var translateText = "";
 
-  //console.log(prevedeno);
+  const cure = test.data.map((element) => {
+    console.log(element.description);
+    translateText = translateText + " " + element.description;
+  });
+
+  console.log(translateText);
+  const prevedeno = TranslatedText(translateText);
 
   return test;
 };
