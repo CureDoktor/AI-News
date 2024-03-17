@@ -9,7 +9,7 @@ const fetchNews = async (
   keywords?: string,
   isDynamic?: boolean
 ) => {
-  //countries=rs za srpske vesti
+  
 
   const res = await axios({
     method: "get",
@@ -18,19 +18,15 @@ const fetchNews = async (
     }${keywords ? "&keywords=" + keywords : ""}`,
   });
 
-  res.data.data.forEach((item: any) => {
+  await Promise.all(res.data.data.map(async (item: any) => {
     // Translate the title and description fields
-    const translatedTitle: any = translateText(item.title, "sr");
-    const translatedDescription: any = translateText(item.description, "sr");
+    const translatedTitle: any = await translateText(item.title, "sr");
+    const translatedDescription: any = await translateText(item.description, "sr");
 
-    // Update the item with translated fields
     item.title = translatedTitle;
     item.description = translatedDescription;
-  });
+}));
 
-  //const prevedeno = translateText(res?.data, "sr");
-
-  // console.log(prevedeno);
 
   const cure = sortNewsByImage(res?.data);
 
@@ -405,9 +401,9 @@ const fetchNews = async (
 //     ],
 //   };
 
-//   //const nesto = "something here should be translated to Serbian language";
+  //const nesto = "something here should be translated to Serbian language";
 
-//   // const prevedeno = translateText(nesto, "sr");
+  // const prevedeno = translateText(nesto, "sr");
 
 //   return test;
 // };

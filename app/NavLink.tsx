@@ -10,7 +10,7 @@ function NavLink({ category, isActive }: Props) {
     <Link
       className={`navLink ${
         isActive &&
-        "underline decoration-orange-400 underline-offset-4 font-bold text-lg"
+        "underline decoration-orange-400 underline-offset-4 font-bold lg:text-lg"
       }`}
       href={`/news/${category}`}
     >

@@ -22,7 +22,7 @@ export const TranslatedText = async (message: string) => {
     max_tokens: 64,
     top_p: 1,
   });
-  console.log(response.choices[0].message.content);
+
 
   return response.choices[0].message.content;
 };
