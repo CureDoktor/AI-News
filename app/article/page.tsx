@@ -7,37 +7,36 @@ type Props = {
 };
 
 function ArticlePage({ searchParams }: Props) {
-  if (
-    (searchParams && Object.entries(searchParams).length === 0) ||
-    !searchParams
-  ) {
+  // Check if searchParams is undefined or an empty object
+  if (!searchParams || Object.keys(searchParams).length === 0) {
     return notFound();
   }
 
-  const article: Article = searchParams;
+  // Ensure searchParams is initialized before accessing its properties
+  const { title, author, source, published_at, description, image } = searchParams;
 
   return (
     <article>
       <section className="flex flex-col lg:flex-row pb-24 px-0 lg:px-10">
-        {article.image && (
+        {image && (
           <img
             className="h-50 max-w-md mx-auto md:max-w-lg lg:max-w-xl object-cover rounded-lg shadow-md"
-            src={article.image}
-            alt={article.title}
+            src={image}
+            alt={title}
           />
         )}
         <div className="px-10">
           <h1 className="headerTitle px-0 no-underline pb-2">
-            {article.title}
+            {title}
           </h1>
           <div className="flex divide-x-2 space-x-4">
-            <h2 className="font-bold">By: {article.author}</h2>
-            <h2 className="font-bold pl-4">Source: {article.source}</h2>
+            <h2 className="font-bold">By: {author}</h2>
+            <h2 className="font-bold pl-4">Source: {source}</h2>
             <p className="pl-4">
-              <LiveTimestamp time={article.published_at} />
+              <LiveTimestamp time={published_at} />
             </p>
           </div>
-          <p className="pt-4">{article.description}</p>
+          <p className="pt-4">{description}</p>
         </div>
       </section>
     </article>
