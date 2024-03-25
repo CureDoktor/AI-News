@@ -23,7 +23,7 @@ function ReadMoreButton({ article }: Props) {
       .filter(Boolean) // Remove empty strings
       .join("&");
 
-    const url = `/article?${queryString}`;
+    const url = `/article/slug?${queryString}`;
 
     router.push(url);
   };

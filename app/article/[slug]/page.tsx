@@ -2,8 +2,8 @@
 
 import { notFound } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import LiveTimestamp from "../LiveTimestamp";
-import Article from "../Article";
+import LiveTimestamp from "../../LiveTimestamp";
+import Article from "../../Article";
 
 type Props = {
   searchParams?: Article;
