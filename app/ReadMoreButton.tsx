@@ -10,7 +10,9 @@ type Props = {
 function ReadMoreButton({ article }: Props) {
   const router = useRouter();
   const handleClick = () => {
-    
+    const serializedObject = JSON.stringify(article);
+
+    sessionStorage.setItem("article", serializedObject);
     const queryString = Object.entries(article)
       .map(([key, value]) => {
         // Check if the value is null, if so, return an empty string
