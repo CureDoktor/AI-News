@@ -9,7 +9,6 @@ type Props = {
 
 function ReadMoreButton({ article }: Props) {
   const router = useRouter();
-  console.log(article);
   const handleClick = () => {
     
     const queryString = Object.entries(article)
